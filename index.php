@@ -23,6 +23,12 @@
 ?>
 
 <html>
-    <p>Olá</p>
+    <head>
+        <title>Estoque</title>
+    </head>
+    <body>
+        <p>Olá</p>
+    </body>
+
 
 </html>
