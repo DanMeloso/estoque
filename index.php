@@ -1,25 +1,10 @@
 <?php
-    $username = 'root';
-    $password = '';
+    include_once 'conexao.php';
 
-    try{
-        $conn = new PDO('mysql:host=localhost;dbname=estoque', $username, $password);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $select = $conn->query("SELECT * FROM produtos");
 
-        $codigo = 1;
-
-        $stmt = $conn->prepare('SELECT * FROM produtos where codigo = :codigo');
-        $stmt->execute(array('codigo' => $codigo));
-
-        while ($row = $stmt->fetch()){
-            print_r($row);
-        }
-
-    } catch (PDOException $e){
-        echo 'ERRO ao conectar: ' . $e->getMessage();
-    }
-
-
+    while ($registro = $select->fetch(PDO::FETCH_OBJ)){
+        echo $registro->descricao . '<br>';}
 ?>
 
 <html>
@@ -27,8 +12,13 @@
         <title>Estoque</title>
     </head>
     <body>
-        <p>Olá</p>
+
+        <h1>Incluir</h1>
+        <form action="incluir_produto.php" method="post">
+            <input type="text" name="descricao">
+
+
+            <input type="submit">
+        </form>
     </body>
-
-
 </html>
